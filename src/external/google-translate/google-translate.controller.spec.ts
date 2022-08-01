@@ -11,9 +11,7 @@ describe('GoogleTranslateController', () => {
       providers: [GoogleTranslateService],
     }).compile();
 
-    controller = module.get<GoogleTranslateController>(
-      GoogleTranslateController,
-    );
+    controller = module.get<GoogleTranslateController>(GoogleTranslateController);
   });
 
   it('should be defined', () => {

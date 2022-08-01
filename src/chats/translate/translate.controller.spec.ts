@@ -1,17 +1,17 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { TranslateController } from './translate.controller';
-import { TranslateService } from './translate.service';
+import { ChatTranslateController } from './translate.controller';
+import { ChatTranslateService } from './translate.service';
 
 describe('TranslateController', () => {
-  let controller: TranslateController;
+  let controller: ChatTranslateController;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      controllers: [TranslateController],
-      providers: [TranslateService],
+      controllers: [ChatTranslateController],
+      providers: [ChatTranslateService],
     }).compile();
 
-    controller = module.get<TranslateController>(TranslateController);
+    controller = module.get<ChatTranslateController>(ChatTranslateController);
   });
 
   it('should be defined', () => {

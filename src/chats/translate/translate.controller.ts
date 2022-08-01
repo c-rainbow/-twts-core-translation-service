@@ -1,34 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { TranslateService } from './translate.service';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
+import { ChatTranslateService as ChatTranslateService } from './translate.service';
 import { CreateTranslateDto } from './dto/create-translate.dto';
-import { UpdateTranslateDto } from './dto/update-translate.dto';
 
-@Controller('translate')
-export class TranslateController {
-  constructor(private readonly translateService: TranslateService) {}
+@Controller('chats/translate')
+export class ChatTranslateController {
+  constructor(private readonly translateService: ChatTranslateService) {}
 
   @Post()
-  create(@Body() createTranslateDto: CreateTranslateDto) {
-    return this.translateService.create(createTranslateDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.translateService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.translateService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTranslateDto: UpdateTranslateDto) {
-    return this.translateService.update(+id, updateTranslateDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.translateService.remove(+id);
+  translate(@Body() createTranslateDto: CreateTranslateDto) {
+    return this.translateService.translate(createTranslateDto);
   }
 }

@@ -5,5 +5,6 @@ import { EmotesController } from './emotes.controller';
 @Module({
   controllers: [EmotesController],
   providers: [EmotesService],
+  exports: [EmotesService]
 })
 export class EmotesModule {}

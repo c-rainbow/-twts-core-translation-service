@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { TranslateService } from './translate.service';
-import { TranslateController } from './translate.controller';
+import { ChatTranslateService } from './translate.service';
+import { ChatTranslateController } from './translate.controller';
 
 @Module({
-  controllers: [TranslateController],
-  providers: [TranslateService]
+  controllers: [ChatTranslateController],
+  providers: [ChatTranslateService],
 })
 export class ChatTranslateModule {}

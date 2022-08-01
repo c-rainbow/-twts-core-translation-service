@@ -1,26 +1,15 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotImplementedException } from '@nestjs/common';
+import { EmotesService } from 'src/external/emotes/emotes.service';
 import { CreateFragmentDto } from './dto/create-fragment.dto';
 import { UpdateFragmentDto } from './dto/update-fragment.dto';
+import { ChatFragment } from './fragments.interface';
 
 @Injectable()
 export class FragmentsService {
-  create(createFragmentDto: CreateFragmentDto) {
-    return 'This action adds a new fragment';
+  constructor(private emotesService: EmotesService) {
+    
   }
-
-  findAll() {
-    return `This action returns all fragments`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} fragment`;
-  }
-
-  update(id: number, updateFragmentDto: UpdateFragmentDto) {
-    return `This action updates a #${id} fragment`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} fragment`;
+  create(createFragmentDto: CreateFragmentDto): ChatFragment[] {
+    throw new NotImplementedException('Not implemented yet');
   }
 }

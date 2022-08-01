@@ -12,7 +12,6 @@ import { ChatFragmentsModule } from './chats/fragments/fragments.module';
 import { ChatLangDetectModule } from './chats/langdetect/langdetect.module';
 import { ChatTranslateModule } from './chats/translate/translate.module';
 
-
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -26,7 +25,7 @@ import { ChatTranslateModule } from './chats/translate/translate.module';
 
     // Pronunciation related modules
     PronunciationsModule,
-    
+
     // Display name related modules
     NameLangDetectModule,
     NameTranslateModule,

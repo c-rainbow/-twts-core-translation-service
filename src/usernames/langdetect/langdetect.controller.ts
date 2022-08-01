@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { NameLangDetectService } from './langdetect.service';
 import { CreateLangDetectDto } from './dto/create-langdetect.dto';
 import { UpdateLangDetectDto } from './dto/update-langdetect.dto';
@@ -23,7 +31,10 @@ export class NameLangDetectController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateLangDetectDto: UpdateLangDetectDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateLangDetectDto: UpdateLangDetectDto,
+  ) {
     return this.langdetectService.update(+id, updateLangDetectDto);
   }
 

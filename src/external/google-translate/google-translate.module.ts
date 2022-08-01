@@ -4,6 +4,6 @@ import { GoogleTranslateController } from './google-translate.controller';
 
 @Module({
   controllers: [GoogleTranslateController],
-  providers: [GoogleTranslateService],
+  providers: [GoogleTranslateService]
 })
 export class GoogleTranslateModule {}

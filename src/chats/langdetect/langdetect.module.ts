@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
-import { LangDetectService } from './langdetect.service';
-import { LangDetectController } from './langdetect.controller';
+import { ChatLangDetectService } from './langdetect.service';
+import { ChatLangDetectController } from './langdetect.controller';
 
 @Module({
-  controllers: [LangDetectController],
-  providers: [LangDetectService]
+  controllers: [ChatLangDetectController],
+  providers: [ChatLangDetectService],
 })
 export class ChatLangDetectModule {}
