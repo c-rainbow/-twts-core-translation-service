@@ -3,7 +3,7 @@ import { DetectChatLangDto } from './dto/detect-chat-lang.dto';
 
 @Injectable()
 export class ChatLangDetectService {
-  detect(detectChatLangDto: DetectChatLangDto) {
+  detectLanguage(detectChatLangDto: DetectChatLangDto) {
     throw new NotImplementedException('Not implemented');
   }
 }

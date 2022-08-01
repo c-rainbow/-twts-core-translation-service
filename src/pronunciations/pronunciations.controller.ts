@@ -8,38 +8,26 @@ import {
   Delete,
 } from '@nestjs/common';
 import { PronunciationsService } from './pronunciations.service';
-import { CreatePronunciationDto } from './dto/create-pronunciation.dto';
-import { UpdatePronunciationDto } from './dto/update-pronunciation.dto';
+import { GetPinyinDto } from './dto/get-pinyin.dto';
+import { GetRomajiDto } from './dto/get-romaji.dto';
+import { GetHanjaDto } from './dto/get-hanja.dto';
 
 @Controller('pronunciations')
 export class PronunciationsController {
   constructor(private readonly pronunciationsService: PronunciationsService) {}
 
-  @Post()
-  create(@Body() createPronunciationDto: CreatePronunciationDto) {
-    return this.pronunciationsService.create(createPronunciationDto);
+  @Post('pinyin')
+  getPinyin(@Body() getPinyinDto: GetPinyinDto) {
+    return this.pronunciationsService.getPinyin(getPinyinDto);
   }
 
-  @Get()
-  findAll() {
-    return this.pronunciationsService.findAll();
+  @Post('romaji')
+  getRomaji(@Body() dto: GetRomajiDto) {
+    return this.pronunciationsService.getRomaji(dto);
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.pronunciationsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updatePronunciationDto: UpdatePronunciationDto,
-  ) {
-    return this.pronunciationsService.update(+id, updatePronunciationDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.pronunciationsService.remove(+id);
+  @Post('hanja')
+  getHanja(@Body() dto: GetHanjaDto) {
+    return this.pronunciationsService.getHanja(dto);
   }
 }

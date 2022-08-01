@@ -8,6 +8,6 @@ export class ChatLangDetectController {
 
   @Post()
   detect(@Body() detectChatLangDto: DetectChatLangDto) {
-    return this.langdetectService.detect(detectChatLangDto);
+    return this.langdetectService.detectLanguage(detectChatLangDto);
   }
 }

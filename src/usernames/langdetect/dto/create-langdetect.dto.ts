@@ -1,1 +1,3 @@
-export class CreateLangDetectDto {}
+export class DetectNameLangDto {
+  displayName: string;
+}

@@ -8,7 +8,7 @@ import {
   Delete,
 } from '@nestjs/common';
 import { NameTranslateService } from './translate.service';
-import { CreateTranslateDto } from './dto/create-translate.dto';
+import { TranslateNameDto } from './dto/create-translate.dto';
 import { UpdateTranslateDto } from './dto/update-translate.dto';
 
 @Controller('translate')
@@ -16,30 +16,7 @@ export class NameTranslateController {
   constructor(private readonly translateService: NameTranslateService) {}
 
   @Post()
-  create(@Body() createTranslateDto: CreateTranslateDto) {
-    return this.translateService.create(createTranslateDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.translateService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.translateService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateTranslateDto: UpdateTranslateDto,
-  ) {
-    return this.translateService.update(+id, updateTranslateDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.translateService.remove(+id);
+  translate(@Body() translateDto: TranslateNameDto) {
+    return this.translateService.translate(translateDto);
   }
 }

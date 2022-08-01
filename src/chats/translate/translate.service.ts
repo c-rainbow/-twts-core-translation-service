@@ -1,9 +1,9 @@
 import { Injectable, NotImplementedException } from '@nestjs/common';
-import { CreateTranslateDto } from './dto/create-translate.dto';
+import { TranslateFragmentsDto } from './dto/translate-fragments.dto';
 
 @Injectable()
 export class ChatTranslateService {
-  translate(createTranslateDto: CreateTranslateDto) {
+  translate(translateDto: TranslateFragmentsDto) {
     throw new NotImplementedException('Not implemented');
   }
 }

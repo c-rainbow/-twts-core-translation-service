@@ -15,28 +15,8 @@ import { UpdateEmoteDto } from './dto/update-emote.dto';
 export class EmotesController {
   constructor(private readonly emotesService: EmotesService) {}
 
-  @Post()
-  create(@Body() createEmoteDto: CreateEmoteDto) {
-    return this.emotesService.create(createEmoteDto);
-  }
-
-  @Get()
-  findAll() {
-    return this.emotesService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.emotesService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEmoteDto: UpdateEmoteDto) {
-    return this.emotesService.update(+id, updateEmoteDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.emotesService.remove(+id);
+  @Get(':channelId/:word')
+  getEmote(@Param('channelId') channelId: string, @Param('word') word: string) {
+    return this.emotesService.getEmote(channelId, word);
   }
 }

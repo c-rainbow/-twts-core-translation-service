@@ -1,26 +1,19 @@
-import { Injectable } from '@nestjs/common';
-import { CreatePronunciationDto } from './dto/create-pronunciation.dto';
-import { UpdatePronunciationDto } from './dto/update-pronunciation.dto';
+import { Injectable, NotImplementedException } from '@nestjs/common';
+import { GetHanjaDto } from './dto/get-hanja.dto';
+import { GetRomajiDto } from './dto/get-romaji.dto';
+import { GetPinyinDto } from './dto/get-pinyin.dto';
 
 @Injectable()
 export class PronunciationsService {
-  create(createPronunciationDto: CreatePronunciationDto) {
-    return 'This action adds a new pronunciation';
+  getPinyin(dto: GetPinyinDto) {
+    throw new NotImplementedException('Not implemented');
   }
 
-  findAll() {
-    return `This action returns all pronunciations`;
+  getRomaji(dto: GetRomajiDto) {
+    throw new NotImplementedException('Not implemented');
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} pronunciation`;
-  }
-
-  update(id: number, updatePronunciationDto: UpdatePronunciationDto) {
-    return `This action updates a #${id} pronunciation`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} pronunciation`;
+  getHanja(dto: GetHanjaDto) {
+    throw new NotImplementedException('Not implemented');
   }
 }
