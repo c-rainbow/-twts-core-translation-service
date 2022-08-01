@@ -11,7 +11,9 @@ describe('FragmentsTranslatorController', () => {
       providers: [FragmentsTranslatorService],
     }).compile();
 
-    controller = module.get<FragmentsTranslatorController>(FragmentsTranslatorController);
+    controller = module.get<FragmentsTranslatorController>(
+      FragmentsTranslatorController,
+    );
   });
 
   it('should be defined', () => {

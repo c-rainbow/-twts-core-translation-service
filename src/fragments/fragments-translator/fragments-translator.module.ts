@@ -4,6 +4,6 @@ import { FragmentsTranslatorController } from './fragments-translator.controller
 
 @Module({
   controllers: [FragmentsTranslatorController],
-  providers: [FragmentsTranslatorService]
+  providers: [FragmentsTranslatorService],
 })
 export class FragmentsTranslatorModule {}

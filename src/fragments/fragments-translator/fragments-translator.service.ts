@@ -16,7 +16,10 @@ export class FragmentsTranslatorService {
     return `This action returns a #${id} fragmentsTranslator`;
   }
 
-  update(id: number, updateFragmentsTranslatorDto: UpdateFragmentsTranslatorDto) {
+  update(
+    id: number,
+    updateFragmentsTranslatorDto: UpdateFragmentsTranslatorDto,
+  ) {
     return `This action updates a #${id} fragmentsTranslator`;
   }
 

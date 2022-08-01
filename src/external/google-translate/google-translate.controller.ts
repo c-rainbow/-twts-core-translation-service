@@ -3,5 +3,7 @@ import { GoogleTranslateService } from './google-translate.service';
 
 @Controller('google-translate')
 export class GoogleTranslateController {
-  constructor(private readonly googleTranslateService: GoogleTranslateService) {}
+  constructor(
+    private readonly googleTranslateService: GoogleTranslateService,
+  ) {}
 }

@@ -9,7 +9,9 @@ describe('FragmentsTranslatorService', () => {
       providers: [FragmentsTranslatorService],
     }).compile();
 
-    service = module.get<FragmentsTranslatorService>(FragmentsTranslatorService);
+    service = module.get<FragmentsTranslatorService>(
+      FragmentsTranslatorService,
+    );
   });
 
   it('should be defined', () => {

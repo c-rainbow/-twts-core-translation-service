@@ -11,7 +11,9 @@ describe('PapagoTranslateController', () => {
       providers: [PapagoTranslateService],
     }).compile();
 
-    controller = module.get<PapagoTranslateController>(PapagoTranslateController);
+    controller = module.get<PapagoTranslateController>(
+      PapagoTranslateController,
+    );
   });
 
   it('should be defined', () => {

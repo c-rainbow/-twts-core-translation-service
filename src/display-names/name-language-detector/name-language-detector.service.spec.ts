@@ -9,7 +9,9 @@ describe('NameLanguageDetectorService', () => {
       providers: [NameLanguageDetectorService],
     }).compile();
 
-    service = module.get<NameLanguageDetectorService>(NameLanguageDetectorService);
+    service = module.get<NameLanguageDetectorService>(
+      NameLanguageDetectorService,
+    );
   });
 
   it('should be defined', () => {

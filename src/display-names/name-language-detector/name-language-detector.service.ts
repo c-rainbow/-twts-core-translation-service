@@ -16,7 +16,10 @@ export class NameLanguageDetectorService {
     return `This action returns a #${id} nameLanguageDetector`;
   }
 
-  update(id: number, updateNameLanguageDetectorDto: UpdateNameLanguageDetectorDto) {
+  update(
+    id: number,
+    updateNameLanguageDetectorDto: UpdateNameLanguageDetectorDto,
+  ) {
     return `This action updates a #${id} nameLanguageDetector`;
   }
 

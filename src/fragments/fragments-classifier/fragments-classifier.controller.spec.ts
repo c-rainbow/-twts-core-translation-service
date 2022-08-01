@@ -11,7 +11,9 @@ describe('FragmentsClassifierController', () => {
       providers: [FragmentsClassifierService],
     }).compile();
 
-    controller = module.get<FragmentsClassifierController>(FragmentsClassifierController);
+    controller = module.get<FragmentsClassifierController>(
+      FragmentsClassifierController,
+    );
   });
 
   it('should be defined', () => {

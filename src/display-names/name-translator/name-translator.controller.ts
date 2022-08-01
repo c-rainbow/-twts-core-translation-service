@@ -1,9 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { NameTranslatorService } from './name-translator.service';
 import { CreateNameTranslatorDto } from './dto/create-name-translator.dto';
 import { UpdateNameTranslatorDto } from './dto/update-name-translator.dto';
-
-@Controller('name-translator')
+@Controller('translate/display-name')
 export class NameTranslatorController {
   constructor(private readonly nameTranslatorService: NameTranslatorService) {}
 
@@ -23,7 +30,10 @@ export class NameTranslatorController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateNameTranslatorDto: UpdateNameTranslatorDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateNameTranslatorDto: UpdateNameTranslatorDto,
+  ) {
     return this.nameTranslatorService.update(+id, updateNameTranslatorDto);
   }
 

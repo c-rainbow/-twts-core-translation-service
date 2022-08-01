@@ -4,6 +4,6 @@ import { PapagoTranslateController } from './papago-translate.controller';
 
 @Module({
   controllers: [PapagoTranslateController],
-  providers: [PapagoTranslateService]
+  providers: [PapagoTranslateService],
 })
 export class PapagoTranslateModule {}

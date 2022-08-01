@@ -9,7 +9,9 @@ describe('FragmentsClassifierService', () => {
       providers: [FragmentsClassifierService],
     }).compile();
 
-    service = module.get<FragmentsClassifierService>(FragmentsClassifierService);
+    service = module.get<FragmentsClassifierService>(
+      FragmentsClassifierService,
+    );
   });
 
   it('should be defined', () => {

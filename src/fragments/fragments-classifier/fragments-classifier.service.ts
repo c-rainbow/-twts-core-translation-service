@@ -16,7 +16,10 @@ export class FragmentsClassifierService {
     return `This action returns a #${id} fragmentsClassifier`;
   }
 
-  update(id: number, updateFragmentsClassifierDto: UpdateFragmentsClassifierDto) {
+  update(
+    id: number,
+    updateFragmentsClassifierDto: UpdateFragmentsClassifierDto,
+  ) {
     return `This action updates a #${id} fragmentsClassifier`;
   }
 

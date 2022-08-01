@@ -4,6 +4,6 @@ import { NameTranslatorController } from './name-translator.controller';
 
 @Module({
   controllers: [NameTranslatorController],
-  providers: [NameTranslatorService]
+  providers: [NameTranslatorService],
 })
 export class NameTranslatorModule {}

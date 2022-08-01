@@ -4,6 +4,6 @@ import { FragmentsClassifierController } from './fragments-classifier.controller
 
 @Module({
   controllers: [FragmentsClassifierController],
-  providers: [FragmentsClassifierService]
+  providers: [FragmentsClassifierService],
 })
 export class FragmentsClassifierModule {}

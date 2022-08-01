@@ -1,11 +1,21 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { FragmentsClassifierService } from './fragments-classifier.service';
 import { CreateFragmentsClassifierDto } from './dto/create-fragments-classifier.dto';
 import { UpdateFragmentsClassifierDto } from './dto/update-fragments-classifier.dto';
 
 @Controller('fragments-classifier')
 export class FragmentsClassifierController {
-  constructor(private readonly fragmentsClassifierService: FragmentsClassifierService) {}
+  constructor(
+    private readonly fragmentsClassifierService: FragmentsClassifierService,
+  ) {}
 
   @Post()
   create(@Body() createFragmentsClassifierDto: CreateFragmentsClassifierDto) {
@@ -23,8 +33,14 @@ export class FragmentsClassifierController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFragmentsClassifierDto: UpdateFragmentsClassifierDto) {
-    return this.fragmentsClassifierService.update(+id, updateFragmentsClassifierDto);
+  update(
+    @Param('id') id: string,
+    @Body() updateFragmentsClassifierDto: UpdateFragmentsClassifierDto,
+  ) {
+    return this.fragmentsClassifierService.update(
+      +id,
+      updateFragmentsClassifierDto,
+    );
   }
 
   @Delete(':id')

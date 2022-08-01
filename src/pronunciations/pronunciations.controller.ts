@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { PronunciationsService } from './pronunciations.service';
 import { CreatePronunciationDto } from './dto/create-pronunciation.dto';
 import { UpdatePronunciationDto } from './dto/update-pronunciation.dto';
@@ -23,7 +31,10 @@ export class PronunciationsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePronunciationDto: UpdatePronunciationDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updatePronunciationDto: UpdatePronunciationDto,
+  ) {
     return this.pronunciationsService.update(+id, updatePronunciationDto);
   }
 

@@ -11,7 +11,9 @@ describe('NameLanguageDetectorController', () => {
       providers: [NameLanguageDetectorService],
     }).compile();
 
-    controller = module.get<NameLanguageDetectorController>(NameLanguageDetectorController);
+    controller = module.get<NameLanguageDetectorController>(
+      NameLanguageDetectorController,
+    );
   });
 
   it('should be defined', () => {
