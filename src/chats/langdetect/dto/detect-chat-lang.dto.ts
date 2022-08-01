@@ -1,4 +1,4 @@
-import { ChatFragment } from '../../fragments/fragments.interface';
+import { ChatFragment } from "src/types/fragments";
 
 export class DetectChatLangDto {
   fragments: ChatFragment[];

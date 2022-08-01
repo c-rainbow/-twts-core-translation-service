@@ -1,4 +1,4 @@
-import { ChatFragment } from '../fragments/fragments.interface';
+import { ChatFragment } from 'src/types/fragments';
 import { NameTranslationOutput } from '../../usernames/translate/translate.interface';
 
 export interface UserConfigs {

@@ -1,10 +1,8 @@
-import { Injectable } from '@nestjs/common';
-import { Emote } from 'src/types/emotes';
-import { EmoteFetcher } from './fetcher';
+import { Emote } from "src/types/emotes";
+import { EmoteFetcher } from "./fetcher";
 
-@Injectable()
-export class EmotesService {
 
+export class EmoteManager {
   private _fetcher: EmoteFetcher;
 
   // For now, use one repository for all sources of emotes. This design decision may change later.

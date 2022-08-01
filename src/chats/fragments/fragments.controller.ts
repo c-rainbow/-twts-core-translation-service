@@ -1,7 +1,7 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { FragmentsService } from './fragments.service';
 import { MakeFragmentsDto as MakeFragmentsDto } from './dto/make-fragments.dto';
-import { ChatFragment } from './fragments.interface';
+import { ChatFragment } from 'src/types/fragments';
 
 @Controller('/chats/fragments')
 export class FragmentsController {
