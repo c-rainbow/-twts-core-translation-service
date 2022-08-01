@@ -6,9 +6,7 @@ import { ChatFragment } from './fragments.interface';
 
 @Injectable()
 export class FragmentsService {
-  constructor(private emotesService: EmotesService) {
-    
-  }
+  constructor(private emotesService: EmotesService) {}
   create(createFragmentDto: CreateFragmentDto): ChatFragment[] {
     throw new NotImplementedException('Not implemented yet');
   }
