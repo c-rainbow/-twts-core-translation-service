@@ -16,17 +16,17 @@ import { GetHanjaDto } from './dto/get-hanja.dto';
 export class PronunciationsController {
   constructor(private readonly pronunciationsService: PronunciationsService) {}
 
-  @Post('pinyin')
-  getPinyin(@Body() getPinyinDto: GetPinyinDto) {
-    return this.pronunciationsService.getPinyin(getPinyinDto);
+  @Get('pinyin')
+  getPinyin(@Body() dto: GetPinyinDto) {
+    return this.pronunciationsService.getPinyin(dto.text);
   }
 
-  @Post('romaji')
+  @Get('romaji')
   getRomaji(@Body() dto: GetRomajiDto) {
     return this.pronunciationsService.getRomaji(dto);
   }
 
-  @Post('hanja')
+  @Get('hanja')
   getHanja(@Body() dto: GetHanjaDto) {
     return this.pronunciationsService.getHanja(dto);
   }
