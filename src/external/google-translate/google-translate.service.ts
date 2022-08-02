@@ -2,6 +2,7 @@ import { TranslationServiceClient } from '@google-cloud/translate';
 import { Injectable, NotImplementedException } from '@nestjs/common';
 import { ChatFragment } from '../../types/fragments';
 import { UserConfigs } from '../../types/config';
+import { TranslationResult } from '../../types/translate';
 
 @Injectable()
 export class GoogleTranslateService {
@@ -16,7 +17,7 @@ export class GoogleTranslateService {
     });
   }
 
-  async translate(contents: string[], srcLang: string, config: UserConfigs) {
+  async translate(contents: string[], srcLang: string, config: UserConfigs): Promise<TranslationResult[]> {
     if (contents === []) {
       return [];
     }
