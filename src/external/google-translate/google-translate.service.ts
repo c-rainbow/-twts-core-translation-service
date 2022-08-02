@@ -17,6 +17,10 @@ export class GoogleTranslateService {
   }
 
   async translate(contents: string[], srcLang: string, config: UserConfigs) {
+    if (contents === []) {
+      return [];
+    }
+
     const results = await this._client.translateText({
       parent: `projects/${this._projectId}`,
       contents,
