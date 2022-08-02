@@ -7,7 +7,7 @@ export class ChatTranslateController {
   constructor(private readonly translateService: ChatTranslateService) {}
 
   @Post()
-  translate(@Body() createTranslateDto: TranslateFragmentsDto) {
-    return this.translateService.translate(createTranslateDto);
+  translate(@Body() dto: TranslateFragmentsDto) {
+    return this.translateService.translate(dto);
   }
 }
