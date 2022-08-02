@@ -16,3 +16,9 @@ export interface ChatTranslationOutput {
   destLang: string; // Target language
   displayName?: NameTranslationOutput; // Translated display name, if translated
 }
+
+export interface TranslationResult {
+  text: string;
+  srcLang: string;
+  targetLang: string;
+}
