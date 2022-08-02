@@ -1,12 +1,13 @@
-import { TwitchEmote, TwitchEmoteTags } from "src/types/emotes";
-import { ChatFragment } from "src/types/fragments";
-import { EmoteManager } from "./manager";
-
+import { TwitchEmote, TwitchEmoteTags } from '../../../types/emotes';
+import { ChatFragment } from '../../../types/fragments';
+import { EmoteManager } from './manager';
 
 function populateTwitchEmotesFromTags(
-    message: string, twitchEmoteTags: TwitchEmoteTags): Map<string, TwitchEmote> {
-  const twitchEmotes = new Map<string, TwitchEmote>();  // name to ID
-  for(const [emoteId, ranges] of Object.entries(twitchEmoteTags)) {
+  message: string,
+  twitchEmoteTags: TwitchEmoteTags,
+): Map<string, TwitchEmote> {
+  const twitchEmotes = new Map<string, TwitchEmote>(); // name to ID
+  for (const [emoteId, ranges] of Object.entries(twitchEmoteTags)) {
     const splitted = ranges[0].split('-');
     const startIndex = parseInt(splitted[0]);
     const endIndex = parseInt(splitted[1]);
@@ -16,18 +17,20 @@ function populateTwitchEmotesFromTags(
       provider: 'twitch',
       id: emoteId,
       name,
-      url: `https://static-cdn.jtvnw.net/emoticons/v2/${emoteId}/default/light/1.0`
+      url: `https://static-cdn.jtvnw.net/emoticons/v2/${emoteId}/default/light/1.0`,
     });
   }
 
   return twitchEmotes;
 }
 
-
 export interface IEmoteParser {
-  parse(channelId: string, message: string, emoteTags: TwitchEmoteTags): Promise<ChatFragment[]>;
+  parse(
+    channelId: string,
+    message: string,
+    emoteTags: TwitchEmoteTags,
+  ): Promise<ChatFragment[]>;
 }
-
 
 export class EmoteParser implements IEmoteParser {
   private _manager: EmoteManager;
@@ -37,26 +40,34 @@ export class EmoteParser implements IEmoteParser {
   }
 
   async parse(
-      channelId: string, message: string, emoteTags: TwitchEmoteTags = {}): Promise<ChatFragment[]> {
+    channelId: string,
+    message: string,
+    emoteTags: TwitchEmoteTags = {},
+  ): Promise<ChatFragment[]> {
     // Parse twitch emotes first
     const twitchEmotes = populateTwitchEmotesFromTags(message, emoteTags || {});
 
     // Split and sanitize texts.
     // This is an additional safety check. Twitch already trims extra spaces in the message.
-    const words = message.split(' ').map(word => word.trim()).filter(word => word !== '');
+    const words = message
+      .split(' ')
+      .map((word) => word.trim())
+      .filter((word) => word !== '');
 
     const fragments: ChatFragment[] = [];
     let tempWords: string[] = [];
     for (const word of words) {
-      const emote = twitchEmotes.get(word) || await this._manager.getEmote(channelId, word);
+      const emote =
+        twitchEmotes.get(word) ||
+        (await this._manager.getEmote(channelId, word));
       // If the word is an emote, the previous non-emote words should be a text in a fragment.
       if (emote) {
         // Clear tempWords array
         const prevText = tempWords.join(' ');
         tempWords = [];
 
-        fragments.push({type: 'text', text: prevText});
-        fragments.push({type: 'emote', text: word, emote});
+        fragments.push({ type: 'text', text: prevText });
+        fragments.push({ type: 'emote', text: word, emote });
       }
       // Otherwise, keep adding to the text buffer.
       else {
@@ -64,7 +75,7 @@ export class EmoteParser implements IEmoteParser {
       }
     }
     if (tempWords.length) {
-      fragments.push({type: 'text', text: tempWords.join(' ')});
+      fragments.push({ type: 'text', text: tempWords.join(' ') });
     }
 
     return fragments;

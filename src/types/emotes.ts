@@ -8,27 +8,22 @@ export interface Emote {
   url: string; // Default URL of the emote pic
 }
 
-
 export interface TwitchEmote extends Emote {
   provider: 'twitch';
 }
-
 
 export interface BttvEmote extends Emote {
   provider: 'bttv';
 }
 
-
 export interface FfzEmote extends Emote {
   provider: 'ffz';
 }
-
 
 export interface SevenTvEmote extends Emote {
   provider: '7tv';
 }
 
-
 export interface TwitchEmoteTags {
-  [emoteId: string]: string[]
+  [emoteId: string]: string[];
 }

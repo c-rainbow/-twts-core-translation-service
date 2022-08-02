@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { FragmentsService } from './fragments.service';
 import { FragmentsController } from './fragments.controller';
-import { EmotesModule } from 'src/external/emotes/emotes.module';
+import { EmotesModule } from '../../external/emotes/emotes.module';
 
 @Module({
   imports: [EmotesModule],

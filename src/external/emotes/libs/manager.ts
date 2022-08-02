@@ -1,13 +1,12 @@
-import { Emote } from "src/types/emotes";
-import { EmoteFetcher } from "./fetcher";
-
+import { Emote } from '../../../types/emotes';
+import { EmoteFetcher } from './fetcher';
 
 export class EmoteManager {
   private _fetcher: EmoteFetcher;
 
   // For now, use one repository for all sources of emotes. This design decision may change later.
-  private _globalEmotes: Map<string, Emote>;  // emote name to emote object.
-  private _channelEmotes: Map<string, Map<string, Emote>>;  // Numeric channel ID to emotes
+  private _globalEmotes: Map<string, Emote>; // emote name to emote object.
+  private _channelEmotes: Map<string, Map<string, Emote>>; // Numeric channel ID to emotes
 
   constructor() {
     this._fetcher = new EmoteFetcher();
@@ -40,15 +39,15 @@ export class EmoteManager {
     const ffzGlobalEmotes = await this._fetcher.fetchFfzGlobalEmotes();
     const sevenTvGlobalEmotes = await this._fetcher.fetch7tvGlobalEmotes();
 
-    bttvGlobalEmotes.forEach(emote => {
+    bttvGlobalEmotes.forEach((emote) => {
       this._globalEmotes.set(emote.name, emote);
     });
-    ffzGlobalEmotes.forEach(emote => {
+    ffzGlobalEmotes.forEach((emote) => {
       this._globalEmotes.set(emote.name, emote);
     });
-    sevenTvGlobalEmotes.forEach(emote => {
+    sevenTvGlobalEmotes.forEach((emote) => {
       this._globalEmotes.set(emote.name, emote);
-    })
+    });
   }
 
   private async _populateEmotes(channelId: string) {
@@ -60,27 +59,24 @@ export class EmoteManager {
 
     try {
       const bttvEmotes = await this._fetcher.fetchBttvEmotes(channelId);
-      bttvEmotes.forEach(emote => {
+      bttvEmotes.forEach((emote) => {
         emoteMap.set(emote.name, emote);
       });
-    }
-    catch(e: any) {}
+    } catch (e: any) {}
 
     try {
       const ffzEmotes = await this._fetcher.fetchFfzEmotes(channelId);
-      ffzEmotes.forEach(emote => {
+      ffzEmotes.forEach((emote) => {
         emoteMap.set(emote.name, emote);
       });
-    }
-    catch(e: any) {}
-    
+    } catch (e: any) {}
+
     try {
       const sevenTvEmotes = await this._fetcher.fetch7tvEmotes(channelId);
-      sevenTvEmotes.forEach(emote => {
+      sevenTvEmotes.forEach((emote) => {
         emoteMap.set(emote.name, emote);
       });
-    }
-    catch(e: any) {}
+    } catch (e: any) {}
   }
 
   private _isPopulated(channelId: string): boolean {

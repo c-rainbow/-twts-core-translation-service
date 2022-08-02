@@ -1,5 +1,5 @@
-import { ChatFragment } from 'src/types/fragments';
-import { UserConfigs } from '../translate.interface';
+import { UserConfigs } from '../../../types/config';
+import { ChatFragment } from '../../../types/fragments';
 
 export class TranslateFragmentsDto {
   fragments: ChatFragment[];

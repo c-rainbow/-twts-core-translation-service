@@ -1,4 +1,3 @@
-
 export interface Pronunciation {
   text: string; // Original text
   pinyin?: string; // Pinyin if the original is in Chinese language
