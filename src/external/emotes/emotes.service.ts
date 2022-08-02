@@ -1,21 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { ChatFragment } from '../../types/fragments';
 import { TwitchEmoteTags } from '../../types/emotes';
-import { EmoteParser } from './libs/parser';
+import { populateTwitchEmotesFromTags } from './libs/parser';
+import { EmoteChecker } from './libs/checker';
+import { EmoteManager } from './libs/manager';
 
 @Injectable()
 export class EmotesService {
-  private _parser: EmoteParser;
+  private _manager: EmoteManager;
 
   constructor() {
-    this._parser = new EmoteParser();
+    this._manager = new EmoteManager();
   }
 
-  async parse(
+  getEmoteChecker(
     channelId: string,
     message: string,
     emoteTags: TwitchEmoteTags = {},
-  ): Promise<ChatFragment[]> {
-    return this._parser.parse(channelId, message, emoteTags);
+  ): EmoteChecker {
+    const twitchEmotes = populateTwitchEmotesFromTags(message, emoteTags);
+    return new EmoteChecker(channelId, twitchEmotes, this._manager);
   }
 }

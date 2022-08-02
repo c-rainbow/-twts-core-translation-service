@@ -2,7 +2,7 @@ import { TwitchEmote, TwitchEmoteTags } from '../../../types/emotes';
 import { ChatFragment } from '../../../types/fragments';
 import { EmoteManager } from './manager';
 
-function populateTwitchEmotesFromTags(
+export function populateTwitchEmotesFromTags(
   message: string,
   twitchEmoteTags: TwitchEmoteTags,
 ): Map<string, TwitchEmote> {

@@ -14,9 +14,4 @@ import { UpdateEmoteDto } from './dto/update-emote.dto';
 @Controller('emotes')
 export class EmotesController {
   constructor(private readonly emotesService: EmotesService) {}
-
-  @Get(':channelId/:word')
-  getEmote(@Param('channelId') channelId: string, @Param('word') word: string) {
-    return this.emotesService.getEmote(channelId, word);
-  }
 }
