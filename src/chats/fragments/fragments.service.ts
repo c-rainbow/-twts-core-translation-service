@@ -6,7 +6,12 @@ import { MakeFragmentsDto } from './dto/make-fragments.dto';
 @Injectable()
 export class FragmentsService {
   constructor(private emotesService: EmotesService) {}
-  makeFragments(makeFragmentDto: MakeFragmentsDto): ChatFragment[] {
-    throw new NotImplementedException('Not implemented yet');
+
+  async makeFragments(dto: MakeFragmentsDto): Promise<ChatFragment[]> {
+    return this.emotesService.parse(
+      dto.channelId,
+      dto.message,
+      dto.emoteTags || {},
+    );
   }
 }
