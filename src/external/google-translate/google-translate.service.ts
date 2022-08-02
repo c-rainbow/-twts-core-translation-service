@@ -1,6 +1,7 @@
 import { TranslationServiceClient } from '@google-cloud/translate';
 import { Injectable, NotImplementedException } from '@nestjs/common';
-import { GoogleTranslateTextsDto } from './dto/google-translate-texts';
+import { ChatFragment } from '../../types/fragments';
+import { UserConfigs } from '../../types/config';
 
 @Injectable()
 export class GoogleTranslateService {
@@ -15,24 +16,19 @@ export class GoogleTranslateService {
     });
   }
 
-  async translate(dto: GoogleTranslateTextsDto) {
-    // TODO: for now, concatenate all words and translate them as one chunk.
-    const contents = [dto.fragments
-      .filter(fragment => fragment.type === 'text')
-      .map(fragment => fragment.text)
-      .join(' ')];
+  async translate(contents: string[], srcLang: string, config: UserConfigs) {
     const results = await this._client.translateText({
       parent: `projects/${this._projectId}`,
       contents,
       //sourceLanguageCode: 'en',  // TODO: use the source lang config
       targetLanguageCode: 'en',
     });
-    const translation = results[0].translations[0];
+    const response = results[0];
+    const translations = response.translations;
 
-    return {
+    return translations.map((translation) => ({
       text: translation.translatedText,
-      sourceLang: translation.detectedLanguageCode,
-      targetLang: 'en'
-    }
+      targetLang: translation.translatedText,
+    }));
   }
 }
