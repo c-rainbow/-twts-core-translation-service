@@ -4,8 +4,7 @@ import { GetRomajiDto } from './dto/get-romaji.dto';
 import { GetPinyinDto } from './dto/get-pinyin.dto';
 import { pinyin } from 'pinyin-pro';
 import Kuroshiro from 'kuroshiro';
-import * as KuromojiAnalyzer from "kuroshiro-analyzer-kuromoji";
-
+import * as KuromojiAnalyzer from 'kuroshiro-analyzer-kuromoji';
 
 @Injectable()
 export class PronunciationsService {
@@ -19,13 +18,14 @@ export class PronunciationsService {
 
   getPinyin(text: string) {
     //throw new NotImplementedException('Not implemented');
-    return pinyin("안녕中心11234中心ss아");
+    return pinyin('안녕中心11234中心ss아');
   }
 
   getRomaji(dto: GetRomajiDto) {
     return this._kuroshiro.convert(
       '感じ取れたら手を繋ごう、重なるのは人生のライン and レミリア最高！',
-      { to: 'romaji', romajiSystem: 'passport', mode: 'spaced'});
+      { to: 'romaji', romajiSystem: 'passport', mode: 'spaced' },
+    );
   }
 
   getHanja(dto: GetHanjaDto) {

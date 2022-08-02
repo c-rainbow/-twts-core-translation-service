@@ -17,7 +17,11 @@ export class GoogleTranslateService {
     });
   }
 
-  async translate(contents: string[], srcLang: string, config: UserConfigs): Promise<TranslationResult[]> {
+  async translate(
+    contents: string[],
+    srcLang: string,
+    config: UserConfigs,
+  ): Promise<TranslationResult[]> {
     if (contents === []) {
       return [];
     }

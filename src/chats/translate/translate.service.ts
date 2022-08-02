@@ -7,7 +7,11 @@ import { UserConfigs } from '../../types/config';
 export class ChatTranslateService {
   constructor(private googleTranslateService: GoogleTranslateService) {}
 
-  async translate(fragments: ChatFragment[], srcLang: string, config?: UserConfigs) {
+  async translate(
+    fragments: ChatFragment[],
+    srcLang: string,
+    config?: UserConfigs,
+  ) {
     const contents = fragments
       .filter((fragment) => fragment.type === 'text')
       .map((fragment) => fragment.text);

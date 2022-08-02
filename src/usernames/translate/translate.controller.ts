@@ -1,9 +1,4 @@
-import {
-  Controller,
-  Post,
-  Body,
-  Get,
-} from '@nestjs/common';
+import { Controller, Post, Body, Get } from '@nestjs/common';
 import { NameTranslateService } from './translate.service';
 import { TranslateNameDto } from './dto/translate-display-name.dto';
 
@@ -22,8 +17,8 @@ export class NameTranslateController {
 
   @Get()
   async translate2() {
-    return this.translateService.translate(
-      '봄날의햇살', 'auto', {defaultTargetLang: 'en'}
-    );
+    return this.translateService.translate('봄날의햇살', 'auto', {
+      defaultTargetLang: 'en',
+    });
   }
 }

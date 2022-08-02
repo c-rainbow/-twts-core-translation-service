@@ -4,10 +4,7 @@ import { NameTranslateController } from './translate.controller';
 import { GoogleTranslateModule } from '../../external/google-translate/google-translate.module';
 
 @Module({
-  imports: [
-    CacheModule.register({ max:1000 }),
-    GoogleTranslateModule,
-  ],
+  imports: [CacheModule.register({ max: 1000 }), GoogleTranslateModule],
   controllers: [NameTranslateController],
   providers: [NameTranslateService],
 })

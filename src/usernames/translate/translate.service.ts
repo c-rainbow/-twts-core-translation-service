@@ -1,4 +1,9 @@
-import { CACHE_MANAGER, Inject, Injectable, NotImplementedException } from '@nestjs/common';
+import {
+  CACHE_MANAGER,
+  Inject,
+  Injectable,
+  NotImplementedException,
+} from '@nestjs/common';
 import { UserConfigs } from '../../types/config';
 import { GoogleTranslateService } from '../../external/google-translate/google-translate.service';
 import { Cache } from 'cache-manager';
@@ -8,9 +13,14 @@ import { TranslationResult } from '../../types/translate';
 export class NameTranslateService {
   constructor(
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
-    private googleTranslateService: GoogleTranslateService) {}
+    private googleTranslateService: GoogleTranslateService,
+  ) {}
 
-  async translate(displayName: string, srcLang: string, config: UserConfigs): Promise<TranslationResult> {
+  async translate(
+    displayName: string,
+    srcLang: string,
+    config: UserConfigs,
+  ): Promise<TranslationResult> {
     const cached = await this.cacheManager.get<TranslationResult>(displayName);
     if (!cached) {
       return cached;

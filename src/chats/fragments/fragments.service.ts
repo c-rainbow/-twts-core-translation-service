@@ -27,8 +27,16 @@ function flushBuffer(fragments: ChatFragment[], buffer: string[]) {
 export class FragmentsService {
   constructor(private emotesService: EmotesService) {}
 
-  async makeFragments(channelId: string, message: string, emoteTags: TwitchEmoteTags): Promise<ChatFragment[]> {
-    const emoteChecker = this.emotesService.getEmoteChecker(channelId, message, emoteTags || {});
+  async makeFragments(
+    channelId: string,
+    message: string,
+    emoteTags: TwitchEmoteTags,
+  ): Promise<ChatFragment[]> {
+    const emoteChecker = this.emotesService.getEmoteChecker(
+      channelId,
+      message,
+      emoteTags || {},
+    );
 
     const words = message
       .split(' ')
