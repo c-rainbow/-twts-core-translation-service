@@ -28,7 +28,8 @@ export class GoogleTranslateService {
 
     return translations.map((translation) => ({
       text: translation.translatedText,
-      targetLang: translation.translatedText,
+      srcLang: translation.detectedLanguageCode,
+      targetLang: 'en',  // TODO: do not hardcode
     }));
   }
 }
