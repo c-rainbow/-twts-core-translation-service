@@ -1,15 +1,6 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Post, Body } from '@nestjs/common';
 import { NameLangDetectService } from './langdetect.service';
-import { DetectNameLangDto } from './dto/create-langdetect.dto';
-import { UpdateLangDetectDto } from './dto/update-langdetect.dto';
+import { DetectNameLangDto } from './dto/detect-name-lang.dto';
 
 @Controller('langdetect')
 export class NameLangDetectController {

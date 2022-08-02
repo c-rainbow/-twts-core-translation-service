@@ -1,10 +1,17 @@
 import { Injectable, NotImplementedException } from '@nestjs/common';
-import { TranslateNameDto } from './dto/create-translate.dto';
-import { UpdateTranslateDto } from './dto/update-translate.dto';
+import { TranslateNameDto } from './dto/translate-display-name.dto';
+import { UserConfigs } from '../../types/config';
+import { GoogleTranslateService } from '../../external/google-translate/google-translate.service';
 
 @Injectable()
 export class NameTranslateService {
-  translate(translateDto: TranslateNameDto) {
-    throw new NotImplementedException('Not Implemented');
+  constructor(private googleTranslateService: GoogleTranslateService) {}
+
+  async translate(displayName: string, srcLang: string, config: UserConfigs) {
+    return await this.googleTranslateService.translate(
+      [displayName],
+      srcLang,
+      config,
+    );
   }
 }

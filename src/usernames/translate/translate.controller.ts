@@ -1,22 +1,21 @@
 import {
   Controller,
-  Get,
   Post,
   Body,
-  Patch,
-  Param,
-  Delete,
 } from '@nestjs/common';
 import { NameTranslateService } from './translate.service';
-import { TranslateNameDto } from './dto/create-translate.dto';
-import { UpdateTranslateDto } from './dto/update-translate.dto';
+import { TranslateNameDto } from './dto/translate-display-name.dto';
 
 @Controller('translate')
 export class NameTranslateController {
   constructor(private readonly translateService: NameTranslateService) {}
 
   @Post()
-  translate(@Body() translateDto: TranslateNameDto) {
-    return this.translateService.translate(translateDto);
+  async translate(@Body() dto: TranslateNameDto) {
+    return this.translateService.translate(
+      dto.displayName,
+      dto.srcLang,
+      dto.config,
+    );
   }
 }

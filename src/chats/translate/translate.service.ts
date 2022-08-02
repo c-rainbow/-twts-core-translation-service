@@ -21,14 +21,13 @@ export class ChatTranslateService {
     for (const fragment of dto.fragments) {
       if (fragment.type !== 'text') {
         translatedFragments.push(fragment);
-      }
-      else {
+      } else {
         translatedFragments.push({
           text: translated[index].text,
           type: 'text',
           language: translated[index].targetLang,
           // TODO: get pronunciation
-        })
+        });
         index += 1;
       }
     }
