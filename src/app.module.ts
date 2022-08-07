@@ -5,7 +5,6 @@ import { AppService } from './app.service';
 import { PronunciationsModule } from './pronunciations/pronunciations.module';
 import { EmotesModule } from './external/emotes/emotes.module';
 import { GoogleTranslateModule } from './external/google-translate/google-translate.module';
-import { PapagoTranslateModule } from './external/papago-translate/papago-translate.module';
 import { NameTranslateModule } from './usernames/translate/translate.module';
 import { NameLangDetectModule } from './usernames/langdetect/langdetect.module';
 import { ChatFragmentsModule } from './chats/fragments/fragments.module';
@@ -21,7 +20,6 @@ import { ChatTranslateModule } from './chats/translate/translate.module';
     // Modules for external services
     EmotesModule,
     GoogleTranslateModule,
-    PapagoTranslateModule,
 
     // Pronunciation related modules
     PronunciationsModule,

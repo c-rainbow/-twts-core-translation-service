@@ -1,6 +1,5 @@
 import { TranslationServiceClient } from '@google-cloud/translate';
-import { Injectable, NotImplementedException } from '@nestjs/common';
-import { ChatFragment } from '../../types/fragments';
+import { Injectable } from '@nestjs/common';
 import { UserConfigs } from '../../types/config';
 import { TranslationResult } from '../../types/translate';
 
