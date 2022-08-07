@@ -2,10 +2,35 @@ import { Controller, Post, Body, Get } from '@nestjs/common';
 import { ChatTranslateService as ChatTranslateService } from './translate.service';
 import { TranslateFragmentsDto } from './dto/translate-fragments.dto';
 import { ChatFragment } from '../../types/fragments';
+import { TwitchEmoteTags } from '../../types/emotes';
+import { FragmentsService } from '../fragments/fragments.service';
+
+class TestTranslateDto {
+  channelId: string;
+  message: string;
+  emotes?: TwitchEmoteTags;
+}
 
 @Controller('chats/translate')
 export class ChatTranslateController {
-  constructor(private readonly translateService: ChatTranslateService) {}
+  constructor(
+    private readonly fragmentsService: FragmentsService,
+    private readonly translateService: ChatTranslateService
+  ) {}
+
+
+  @Post('test')
+  async translateTest(@Body() dto: TestTranslateDto) {
+    const fragments = await this.fragmentsService.makeFragments(
+      dto.channelId, dto.message, dto.emotes || {}
+    );
+
+    return this.translateService.translate(
+      fragments,
+      'auto',
+      { defaultTargetLang: 'en' }
+    );
+  }
 
   @Post()
   translate(@Body() dto: TranslateFragmentsDto) {

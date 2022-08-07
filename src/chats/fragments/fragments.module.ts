@@ -7,5 +7,6 @@ import { EmotesModule } from '../../external/emotes/emotes.module';
   imports: [EmotesModule],
   controllers: [FragmentsController],
   providers: [FragmentsService],
+  exports: [FragmentsService],
 })
 export class ChatFragmentsModule {}
