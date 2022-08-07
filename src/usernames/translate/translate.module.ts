@@ -8,5 +8,6 @@ import { PronunciationsService } from '../../pronunciations/pronunciations.servi
   imports: [CacheModule.register({ max: 1000 }), GoogleTranslateModule],
   controllers: [NameTranslateController],
   providers: [NameTranslateService, PronunciationsService],
+  exports: [NameTranslateService]
 })
 export class NameTranslateModule {}
