@@ -21,8 +21,8 @@ export class PronunciationsService {
     return pinyin(text);
   }
 
-  getRomaji(text: string) {
-    const result = this._kuroshiro.convert(
+  async getRomaji(text: string): Promise<string> {
+    const result: string = await this._kuroshiro.convert(
       text,
       { to: 'romaji', romajiSystem: 'passport', mode: 'spaced' },
     );

@@ -41,7 +41,7 @@ export class NameTranslateService {
       pronunciation: {
         text: displayName,
         pinyin: this.pronunciationsService.getPinyin(displayName),
-        //romaji: this.pronunciationsService.getRomaji(displayName),
+        romaji: await this.pronunciationsService.getRomaji(displayName),
       }
     };
 
