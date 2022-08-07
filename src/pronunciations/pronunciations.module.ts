@@ -5,5 +5,6 @@ import { PronunciationsController } from './pronunciations.controller';
 @Module({
   controllers: [PronunciationsController],
   providers: [PronunciationsService],
+  exports: [PronunciationsService],
 })
 export class PronunciationsModule {}

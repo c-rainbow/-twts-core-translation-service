@@ -30,7 +30,8 @@ export class GoogleTranslateService {
       parent: `projects/${this._projectId}`,
       contents,
       //sourceLanguageCode: 'en',  // TODO: use the source lang config
-      targetLanguageCode: config.defaultTargetLang,
+      //targetLanguageCode: config.defaultTargetLang,
+      targetLanguageCode: 'en',
     });
     const response = results[0];
     const translations = response.translations;
@@ -38,7 +39,7 @@ export class GoogleTranslateService {
     return translations.map((translation) => ({
       text: translation.translatedText,
       srcLang: translation.detectedLanguageCode,
-      targetLang: config.defaultTargetLang,
+      destLang: 'en',//config.defaultTargetLang,
     }));
   }
 }

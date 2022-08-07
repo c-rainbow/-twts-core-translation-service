@@ -20,5 +20,5 @@ export interface ChatTranslationOutput {
 export interface TranslationResult {
   text: string;
   srcLang: string;
-  targetLang: string;
+  destLang: string;
 }

@@ -23,7 +23,7 @@ export class PronunciationsController {
 
   @Get('romaji')
   getRomaji(@Body() dto: GetRomajiDto) {
-    return this.pronunciationsService.getRomaji(dto);
+    return this.pronunciationsService.getRomaji(dto.text);
   }
 
   @Get('hanja')

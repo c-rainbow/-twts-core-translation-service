@@ -30,7 +30,7 @@ export class ChatTranslateService {
         translatedFragments.push({
           text: translated[index].text,
           type: 'text',
-          language: translated[index].targetLang,
+          language: translated[index].destLang,
           // TODO: get pronunciation
         });
         index += 1;

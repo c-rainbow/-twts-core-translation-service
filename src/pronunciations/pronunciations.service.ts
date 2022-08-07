@@ -18,14 +18,16 @@ export class PronunciationsService {
 
   getPinyin(text: string) {
     //throw new NotImplementedException('Not implemented');
-    return pinyin('안녕中心11234中心ss아');
+    return pinyin(text);
   }
 
-  getRomaji(dto: GetRomajiDto) {
-    return this._kuroshiro.convert(
-      '感じ取れたら手を繋ごう、重なるのは人生のライン and レミリア最高！',
+  getRomaji(text: string) {
+    const result = this._kuroshiro.convert(
+      text,
       { to: 'romaji', romajiSystem: 'passport', mode: 'spaced' },
     );
+    console.log('romaji:', result);
+    return result;
   }
 
   getHanja(dto: GetHanjaDto) {

@@ -7,21 +7,23 @@ import {
 import { UserConfigs } from '../../types/config';
 import { GoogleTranslateService } from '../../external/google-translate/google-translate.service';
 import { Cache } from 'cache-manager';
-import { TranslationResult } from '../../types/translate';
+import { NameTranslationOutput, TranslationResult } from '../../types/translate';
+import { PronunciationsService } from '../../pronunciations/pronunciations.service';
 
 @Injectable()
 export class NameTranslateService {
   constructor(
     @Inject(CACHE_MANAGER) private cacheManager: Cache,
     private googleTranslateService: GoogleTranslateService,
+    private pronunciationsService: PronunciationsService,
   ) {}
 
   async translate(
     displayName: string,
     srcLang: string,
     config: UserConfigs,
-  ): Promise<TranslationResult> {
-    const cached = await this.cacheManager.get<TranslationResult>(displayName);
+  ): Promise<NameTranslationOutput> {
+    const cached = await this.cacheManager.get<NameTranslationOutput>(displayName);
     if (cached) {
       return cached;
     }
@@ -31,7 +33,19 @@ export class NameTranslateService {
       config,
     );
     const translated = results[0];
-    await this.cacheManager.set<TranslationResult>(displayName, translated);
-    return translated;
+    const output: NameTranslationOutput = {
+      original: displayName,
+      translated: translated.text,
+      srcLang: translated.srcLang,
+      destLang: translated.destLang,
+      pronunciation: {
+        text: displayName,
+        pinyin: this.pronunciationsService.getPinyin(displayName),
+        //romaji: this.pronunciationsService.getRomaji(displayName),
+      }
+    };
+
+    await this.cacheManager.set<NameTranslationOutput>(displayName, output);
+    return output;
   }
 }
