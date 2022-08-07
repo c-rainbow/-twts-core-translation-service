@@ -22,7 +22,7 @@ export class NameTranslateService {
     config: UserConfigs,
   ): Promise<TranslationResult> {
     const cached = await this.cacheManager.get<TranslationResult>(displayName);
-    if (!cached) {
+    if (cached) {
       return cached;
     }
     const results = await this.googleTranslateService.translate(
