@@ -28,6 +28,6 @@ export class PronunciationsController {
 
   @Get('hanja')
   getHanja(@Body() dto: GetHanjaDto) {
-    return this.pronunciationsService.getHanja(dto);
+    return this.pronunciationsService.getHanja(dto.text);
   }
 }

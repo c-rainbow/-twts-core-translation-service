@@ -1,7 +1,4 @@
 import { Injectable, NotImplementedException } from '@nestjs/common';
-import { GetHanjaDto } from './dto/get-hanja.dto';
-import { GetRomajiDto } from './dto/get-romaji.dto';
-import { GetPinyinDto } from './dto/get-pinyin.dto';
 import { pinyin } from 'pinyin-pro';
 import Kuroshiro from 'kuroshiro';
 import * as KuromojiAnalyzer from 'kuroshiro-analyzer-kuromoji';
@@ -17,7 +14,6 @@ export class PronunciationsService {
   }
 
   getPinyin(text: string) {
-    //throw new NotImplementedException('Not implemented');
     return pinyin(text);
   }
 
@@ -26,11 +22,10 @@ export class PronunciationsService {
       text,
       { to: 'romaji', romajiSystem: 'passport', mode: 'spaced' },
     );
-    console.log('romaji:', result);
     return result;
   }
 
-  getHanja(dto: GetHanjaDto) {
+  getHanja(text: string) {
     throw new NotImplementedException('Not implemented');
   }
 }

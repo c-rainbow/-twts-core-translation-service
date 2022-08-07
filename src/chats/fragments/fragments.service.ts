@@ -1,7 +1,6 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { EmotesService } from '../../external/emotes/emotes.service';
 import { ChatFragment } from '../../types/fragments';
-import { MakeFragmentsDto } from './dto/make-fragments.dto';
 import { TwitchEmoteTags } from '../../types/emotes';
 
 const URL_EXPRESSION =
@@ -16,11 +15,12 @@ function flushBuffer(fragments: ChatFragment[], buffer: string[]) {
     return;
   }
   const text = buffer.join(' ');
-  buffer.length = 0;
   fragments.push({
     type: 'text',
     text,
   });
+
+  buffer.length = 0;  // Javascript way to clear an array
 }
 
 @Injectable()
@@ -45,14 +45,12 @@ export class FragmentsService {
     const fragments: ChatFragment[] = [];
     const buffer: string[] = [];
     for (const word of words) {
-      // 1. Check if the word is an emote
-      const emote = await emoteChecker.getEmote(word);
-      if (emote) {
+      // 1. Check if the word is a mention
+      if (word.startsWith('@')) {
         flushBuffer(fragments, buffer);
         fragments.push({
-          type: 'emote',
+          type: 'mention',
           text: word,
-          emote,
         });
         continue;
       }
@@ -67,12 +65,14 @@ export class FragmentsService {
         continue;
       }
 
-      // 3. Check if the word is a mention
-      if (word.startsWith('@')) {
+      // 3. Check if the word is an emote
+      const emote = await emoteChecker.getEmote(word);
+      if (emote) {
         flushBuffer(fragments, buffer);
         fragments.push({
-          type: 'mention',
+          type: 'emote',
           text: word,
+          emote,
         });
         continue;
       }

@@ -1,4 +1,4 @@
-import { Injectable, NotImplementedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { GoogleTranslateService } from '../../external/google-translate/google-translate.service';
 import { ChatFragment } from '../../types/fragments';
 import { UserConfigs } from '../../types/config';
@@ -47,7 +47,6 @@ export class ChatTranslateService {
           text: translated[index].text,
           type: 'text',
           language: translated[index].destLang,
-          // TODO: get pronunciation
         });
         index += 1;
       }
@@ -58,7 +57,7 @@ export class ChatTranslateService {
       translated: translatedFragments,
       srcLang,
       destLang: 'en',
-      //displayName: this.nameTranslateService.translate()
+      // displayName: this.nameTranslateService.translate()
     }
 
 
