@@ -5,9 +5,10 @@ import { GoogleTranslateModule } from '../../external/google-translate/google-tr
 import { ChatFragmentsModule } from '../fragments/fragments.module';
 import { NameTranslateModule } from '../../usernames/translate/translate.module';
 import { PronunciationsModule } from '../../pronunciations/pronunciations.module';
+import { ChatLangDetectModule } from '../langdetect/langdetect.module';
 
 @Module({
-  imports: [ChatFragmentsModule, GoogleTranslateModule, NameTranslateModule, PronunciationsModule],
+  imports: [ChatFragmentsModule, GoogleTranslateModule, NameTranslateModule, PronunciationsModule, ChatLangDetectModule],
   controllers: [ChatTranslateController],
   providers: [ChatTranslateService],
 })

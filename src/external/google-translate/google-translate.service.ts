@@ -28,9 +28,8 @@ export class GoogleTranslateService {
     const results = await this._client.translateText({
       parent: `projects/${this._projectId}`,
       contents,
-      sourceLanguageCode: srcLang,  // TODO: use the source lang config
-      //targetLanguageCode: config.defaultTargetLang,
-      targetLanguageCode: 'en',
+      // sourceLanguageCode: srcLang,  // TODO: use the source lang config
+      targetLanguageCode: configs.defaultTargetLang,
     });
     const response = results[0];
     const translations = response.translations;
@@ -38,7 +37,7 @@ export class GoogleTranslateService {
     return translations.map((translation) => ({
       text: translation.translatedText,
       srcLang: translation.detectedLanguageCode,
-      destLang: 'en',//config.defaultTargetLang,
+      destLang: configs.defaultTargetLang,
     }));
   }
 }

@@ -18,7 +18,6 @@ export class NameTranslateService {
 
   async translate(
     displayName: string,
-    srcLang: string,
     configs: UserConfigs,
   ): Promise<TranslateNameResponse> {
     const cached = await this.cacheManager.get<TranslateNameResponse>(displayName);
@@ -27,7 +26,7 @@ export class NameTranslateService {
     }
     const results = await this.googleTranslateService.translate(
       [displayName],
-      srcLang,
+      'auto',
       configs,
     );
     const translated = results[0];

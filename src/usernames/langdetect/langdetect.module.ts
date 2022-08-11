@@ -5,5 +5,6 @@ import { NameLangDetectController } from './langdetect.controller';
 @Module({
   controllers: [NameLangDetectController],
   providers: [NameLangDetectService],
+  exports: [NameLangDetectService],
 })
 export class NameLangDetectModule {}

@@ -1,17 +1,17 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { ChatTranslateService as ChatTranslateService } from './translate.service';
-import { TranslateFragmentsDto } from './dto/translate-fragments.dto';
+import { TranslateChatDto } from './dto/translate-fragments.dto';
 
 
-@Controller('translate/chat')
+@Controller('translate')
 export class ChatTranslateController {
   constructor(private readonly chatTranslateService: ChatTranslateService) {}
 
-  @Post()
-  translateFragments(@Body() dto: TranslateFragmentsDto) {
+  @Post('chat')
+  translateFragments(@Body() dto: TranslateChatDto) {
     return this.chatTranslateService.translate(
       dto.tokens,
-      dto.srcLang,
+      dto.displayName,
       dto.configs,
     );
   }
