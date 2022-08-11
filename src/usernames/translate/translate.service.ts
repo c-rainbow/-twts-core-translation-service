@@ -2,13 +2,11 @@ import {
   CACHE_MANAGER,
   Inject,
   Injectable,
-  NotImplementedException,
 } from '@nestjs/common';
-import { UserConfigs } from '../../types/config';
 import { GoogleTranslateService } from '../../external/google-translate/google-translate.service';
 import { Cache } from 'cache-manager';
-import { NameTranslationOutput, TranslationResult } from '../../types/translate';
 import { PronunciationsService } from '../../pronunciations/pronunciations.service';
+import { TranslateNameResponse, UserConfigs } from '@twtts/shared';
 
 @Injectable()
 export class NameTranslateService {
@@ -21,19 +19,19 @@ export class NameTranslateService {
   async translate(
     displayName: string,
     srcLang: string,
-    config: UserConfigs,
-  ): Promise<NameTranslationOutput> {
-    const cached = await this.cacheManager.get<NameTranslationOutput>(displayName);
+    configs: UserConfigs,
+  ): Promise<TranslateNameResponse> {
+    const cached = await this.cacheManager.get<TranslateNameResponse>(displayName);
     if (cached) {
       return cached;
     }
     const results = await this.googleTranslateService.translate(
       [displayName],
       srcLang,
-      config,
+      configs,
     );
     const translated = results[0];
-    const output: NameTranslationOutput = {
+    const output: TranslateNameResponse = {
       original: displayName,
       translated: translated.text,
       srcLang: translated.srcLang,
@@ -45,7 +43,7 @@ export class NameTranslateService {
       }
     };
 
-    await this.cacheManager.set<NameTranslationOutput>(displayName, output);
+    await this.cacheManager.set<TranslateNameResponse>(displayName, output);
     return output;
   }
 }

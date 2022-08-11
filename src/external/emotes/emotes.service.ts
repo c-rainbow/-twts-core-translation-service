@@ -1,23 +1,23 @@
 import { Injectable } from '@nestjs/common';
-import { TwitchEmoteTags } from '../../types/emotes';
-import { populateTwitchEmotesFromTags } from './libs/parser';
-import { EmoteChecker } from './libs/checker';
-import { EmoteManager } from './libs/manager';
+import { EmoteChecker, EmoteManager, IEmoteChecker, IEmoteManager, TwitchEmoteTags } from '@twtts/shared';
 
 @Injectable()
 export class EmotesService {
-  private _manager: EmoteManager;
+  private _manager: IEmoteManager;
 
   constructor() {
     this._manager = new EmoteManager();
+  }
+  
+  getEmoteManager(): IEmoteManager {
+    return this._manager;
   }
 
   getEmoteChecker(
     channelId: string,
     message: string,
-    emoteTags: TwitchEmoteTags = {},
-  ): EmoteChecker {
-    const twitchEmotes = populateTwitchEmotesFromTags(message, emoteTags);
-    return new EmoteChecker(channelId, twitchEmotes, this._manager);
+    twitchEmotes: TwitchEmoteTags = {},
+  ): IEmoteChecker {
+    return new EmoteChecker(channelId, message, twitchEmotes, this._manager);
   }
 }

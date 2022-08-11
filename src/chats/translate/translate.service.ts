@@ -1,19 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { GoogleTranslateService } from '../../external/google-translate/google-translate.service';
-import { ChatFragment } from '../../types/fragments';
-import { UserConfigs } from '../../types/config';
-import { NameTranslationOutput } from '../../types/translate';
 import { NameTranslateService } from '../../usernames/translate/translate.service';
 import { PronunciationsService } from '../../pronunciations/pronunciations.service';
+import { ChatToken, TranslateChatResponse, TranslateNameResponse, UserConfigs } from '@twtts/shared';
 
 
-type ChatTranslationOutput = {
-	original: ChatFragment[];  // Fragments of the original chat message.
-  translated?: ChatFragment[];  // Translated chat message. Undefined if not translated
-  srcLang: string;  // Source language
-  destLang: string;  // Target language
-	displayName?: NameTranslationOutput;  // Translated display name, if translated
-}
 
 @Injectable()
 export class ChatTranslateService {
@@ -23,27 +14,26 @@ export class ChatTranslateService {
     private readonly googleTranslateService: GoogleTranslateService
   ) {}
 
+  // TODO: Accept chatter's display name
   async translate(
-    fragments: ChatFragment[],
+    tokens: ChatToken[],
     srcLang: string,
     config?: UserConfigs,
-  ): Promise<ChatTranslationOutput> {
-    const contents = fragments
-      .filter((fragment) => fragment.type === 'text')
-      .map((fragment) => fragment.text);
+  ): Promise<TranslateChatResponse> {
+    const contents = tokens.filter((token) => token.type === 'text').map((token) => token.text);
     const translated = await this.googleTranslateService.translate(
       contents,
       srcLang,
       config,
     );
-    console.log('translated: ', translated);
+    
     let index = 0;
-    const translatedFragments: ChatFragment[] = [];
-    for (const fragment of fragments) {
-      if (fragment.type !== 'text') {
-        translatedFragments.push(fragment);
+    const translatedTokens: ChatToken[] = [];
+    for (const token of tokens) {
+      if (token.type !== 'text') {
+        translatedTokens.push(token);
       } else {
-        translatedFragments.push({
+        translatedTokens.push({
           text: translated[index].text,
           type: 'text',
           language: translated[index].destLang,
@@ -52,12 +42,12 @@ export class ChatTranslateService {
       }
     }
 
-    const output: ChatTranslationOutput = {
-      original: fragments,
-      translated: translatedFragments,
+    const output: TranslateChatResponse = {
+      original: tokens,
+      translated: translatedTokens,
       srcLang,
       destLang: 'en',
-      // displayName: this.nameTranslateService.translate()
+      //displayName: this.nameTranslateService.translate(),
     }
 
 

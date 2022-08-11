@@ -1,7 +1,7 @@
-import { UserConfigs } from '../../../types/config';
+import { UserConfigs, TranslateNameRequest } from '@twtts/shared';
 
-export class TranslateNameDto {
+export class TranslateNameDto implements TranslateNameRequest {
   displayName: string;
   srcLang: string;
-  config: UserConfigs;
+  configs: UserConfigs;
 }

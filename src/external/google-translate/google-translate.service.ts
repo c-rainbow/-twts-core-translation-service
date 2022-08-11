@@ -1,6 +1,6 @@
 import { TranslationServiceClient } from '@google-cloud/translate';
 import { Injectable } from '@nestjs/common';
-import { UserConfigs } from '../../types/config';
+import { UserConfigs } from '@twtts/shared';
 import { TranslationResult } from '../../types/translate';
 
 @Injectable()
@@ -19,7 +19,7 @@ export class GoogleTranslateService {
   async translate(
     contents: string[],
     srcLang: string,
-    config: UserConfigs,
+    configs: UserConfigs,
   ): Promise<TranslationResult[]> {
     if (contents === []) {
       return [];
@@ -28,7 +28,7 @@ export class GoogleTranslateService {
     const results = await this._client.translateText({
       parent: `projects/${this._projectId}`,
       contents,
-      //sourceLanguageCode: 'en',  // TODO: use the source lang config
+      sourceLanguageCode: srcLang,  // TODO: use the source lang config
       //targetLanguageCode: config.defaultTargetLang,
       targetLanguageCode: 'en',
     });

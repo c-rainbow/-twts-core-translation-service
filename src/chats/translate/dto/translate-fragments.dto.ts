@@ -1,8 +1,7 @@
-import { UserConfigs } from '../../../types/config';
-import { ChatFragment } from '../../../types/fragments';
+import { ChatToken, UserConfigs } from "@twtts/shared";
 
 export class TranslateFragmentsDto {
-  fragments: ChatFragment[];
+  tokens: ChatToken[];
   srcLang: string;
-  config: UserConfigs;
+  configs: UserConfigs;
 }

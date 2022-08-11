@@ -26,6 +26,7 @@
     "@nestjs/core": "^8.0.0",
     "@nestjs/mapped-types": "*",
     "@nestjs/platform-express": "^8.0.0",
+    "@twtts/shared": "^1.0.4",
     "cache-manager": "^4.1.0",
     "kuroshiro": "^1.2.0",
     "kuroshiro-analyzer-kuromoji": "^1.1.0",
@@ -35,6 +36,7 @@
     "rxjs": "^7.2.0"
   },
   "devDependencies": {
+    "@golevelup/ts-jest": "^0.3.3",
     "@nestjs/cli": "^8.0.0",
     "@nestjs/config": "^2.2.0",
     "@nestjs/schematics": "^8.0.0",

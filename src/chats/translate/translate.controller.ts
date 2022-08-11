@@ -10,9 +10,9 @@ export class ChatTranslateController {
   @Post()
   translateFragments(@Body() dto: TranslateFragmentsDto) {
     return this.chatTranslateService.translate(
-      dto.fragments,
+      dto.tokens,
       dto.srcLang,
-      dto.config,
+      dto.configs,
     );
   }
 }

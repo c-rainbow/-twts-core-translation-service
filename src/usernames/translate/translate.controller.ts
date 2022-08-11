@@ -11,7 +11,7 @@ export class NameTranslateController {
     return this.translateService.translate(
       dto.displayName,
       dto.srcLang,
-      dto.config,
+      dto.configs,
     );
   }
 
