@@ -6,7 +6,7 @@ import { TranslateNameDto } from './dto/translate-display-name.dto';
 export class NameTranslateController {
   constructor(private readonly translateService: NameTranslateService) {}
 
-  @Post()
+  @Post('name')
   async translate(@Body() dto: TranslateNameDto) {
     return this.translateService.translate(dto.displayName, dto.configs);
   }
