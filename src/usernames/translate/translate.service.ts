@@ -1,8 +1,4 @@
-import {
-  CACHE_MANAGER,
-  Inject,
-  Injectable,
-} from '@nestjs/common';
+import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { GoogleTranslateService } from '../../external/google-translate/google-translate.service';
 import { Cache } from 'cache-manager';
 import { PronunciationsService } from '../../pronunciations/pronunciations.service';
@@ -20,7 +16,9 @@ export class NameTranslateService {
     displayName: string,
     configs: UserConfigs,
   ): Promise<TranslateNameResponse> {
-    const cached = await this.cacheManager.get<TranslateNameResponse>(displayName);
+    const cached = await this.cacheManager.get<TranslateNameResponse>(
+      displayName,
+    );
     if (cached) {
       return cached;
     }
@@ -39,7 +37,7 @@ export class NameTranslateService {
         text: displayName,
         pinyin: this.pronunciationsService.getPinyin(displayName),
         romaji: await this.pronunciationsService.getRomaji(displayName),
-      }
+      },
     };
 
     await this.cacheManager.set<TranslateNameResponse>(displayName, output);

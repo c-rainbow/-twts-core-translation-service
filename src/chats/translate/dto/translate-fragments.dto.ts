@@ -1,4 +1,4 @@
-import { ChatToken, TranslateChatRequest, UserConfigs } from "@twtts/shared";
+import { ChatToken, TranslateChatRequest, UserConfigs } from '@twtts/shared';
 
 export class TranslateChatDto implements TranslateChatRequest {
   tokens: ChatToken[];

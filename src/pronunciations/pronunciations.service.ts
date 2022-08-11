@@ -18,10 +18,11 @@ export class PronunciationsService {
   }
 
   async getRomaji(text: string): Promise<string> {
-    const result: string = await this._kuroshiro.convert(
-      text,
-      { to: 'romaji', romajiSystem: 'passport', mode: 'spaced' },
-    );
+    const result: string = await this._kuroshiro.convert(text, {
+      to: 'romaji',
+      romajiSystem: 'passport',
+      mode: 'spaced',
+    });
     return result;
   }
 

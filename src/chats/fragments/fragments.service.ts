@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { EmotesService } from '../../external/emotes/emotes.service';
 import { ChatToken, ChatTokenizer, TwitchEmoteTags } from '@twtts/shared';
 
-
 @Injectable()
 export class FragmentsService {
   private _tokenizer: ChatTokenizer;

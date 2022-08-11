@@ -8,7 +8,13 @@ import { PronunciationsModule } from '../../pronunciations/pronunciations.module
 import { ChatLangDetectModule } from '../langdetect/langdetect.module';
 
 @Module({
-  imports: [ChatFragmentsModule, GoogleTranslateModule, NameTranslateModule, PronunciationsModule, ChatLangDetectModule],
+  imports: [
+    ChatFragmentsModule,
+    GoogleTranslateModule,
+    NameTranslateModule,
+    PronunciationsModule,
+    ChatLangDetectModule,
+  ],
   controllers: [ChatTranslateController],
   providers: [ChatTranslateService],
 })

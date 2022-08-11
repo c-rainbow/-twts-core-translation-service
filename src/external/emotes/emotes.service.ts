@@ -1,5 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { EmoteChecker, EmoteManager, IEmoteChecker, IEmoteManager, TwitchEmoteTags } from '@twtts/shared';
+import {
+  EmoteChecker,
+  EmoteManager,
+  IEmoteChecker,
+  IEmoteManager,
+  TwitchEmoteTags,
+} from '@twtts/shared';
 
 @Injectable()
 export class EmotesService {
@@ -8,7 +14,7 @@ export class EmotesService {
   constructor() {
     this._manager = new EmoteManager();
   }
-  
+
   getEmoteManager(): IEmoteManager {
     return this._manager;
   }

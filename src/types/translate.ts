@@ -1,4 +1,3 @@
-
 export interface TranslationResult {
   text: string;
   srcLang: string;

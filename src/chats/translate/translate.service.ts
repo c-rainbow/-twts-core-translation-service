@@ -2,10 +2,12 @@ import { Injectable } from '@nestjs/common';
 import { GoogleTranslateService } from '../../external/google-translate/google-translate.service';
 import { NameTranslateService } from '../../usernames/translate/translate.service';
 import { PronunciationsService } from '../../pronunciations/pronunciations.service';
-import { ChatToken, TranslateChatResponse, TranslateNameResponse, UserConfigs } from '@twtts/shared';
+import {
+  ChatToken,
+  TranslateChatResponse,
+  UserConfigs,
+} from '@twtts/shared';
 import { ChatLangDetectService } from '../langdetect/langdetect.service';
-
-
 
 @Injectable()
 export class ChatTranslateService {
@@ -13,7 +15,7 @@ export class ChatTranslateService {
     private readonly chatLangDetectService: ChatLangDetectService,
     private readonly nameTranslateService: NameTranslateService,
     private readonly pronunciationsService: PronunciationsService,
-    private readonly googleTranslateService: GoogleTranslateService
+    private readonly googleTranslateService: GoogleTranslateService,
   ) {}
 
   // TODO: Accept chatter's display name
@@ -23,17 +25,20 @@ export class ChatTranslateService {
     configs: UserConfigs,
   ): Promise<TranslateChatResponse> {
     // Get text parts of the chat
-    const contents = originalTokens.filter(
-      (token) => token.type === 'text').map((token) => token.text);
+    const contents = originalTokens
+      .filter((token) => token.type === 'text')
+      .map((token) => token.text);
     // Detect the language. Currently always 'auto'
-    const detectedSrcLang = this.chatLangDetectService.detectLanguage(contents.join(' '));
+    const detectedSrcLang = this.chatLangDetectService.detectLanguage(
+      contents.join(' '),
+    );
     // Translate using Google Translate
     const translated = await this.googleTranslateService.translate(
       contents,
       detectedSrcLang,
       configs,
     );
-    
+
     let index = 0;
     const translatedTokens: ChatToken[] = [];
     for (const token of originalTokens) {
@@ -60,9 +65,11 @@ export class ChatTranslateService {
       translated: translatedTokens,
       srcLang: 'auto',
       destLang: configs.defaultTargetLang,
-      displayName: await this.nameTranslateService.translate(displayName, configs),
-    }
-
+      displayName: await this.nameTranslateService.translate(
+        displayName,
+        configs,
+      ),
+    };
 
     return output;
   }
