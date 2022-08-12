@@ -21,7 +21,7 @@ export class GoogleTranslateService {
     srcLang: string,
     configs: UserConfigs,
   ): Promise<TranslationResult[]> {
-    if (contents === []) {
+    if (!contents.length) {
       return [];
     }
 
