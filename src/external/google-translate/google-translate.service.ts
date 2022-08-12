@@ -9,11 +9,17 @@ export class GoogleTranslateService {
   private _client: TranslationServiceClient;
 
   constructor() {
+    // TODO: Use config service, and not directly access process.env
     this._projectId = process.env.GCP_TRANSLATION_PROJECT_ID;
-    this._client = new TranslationServiceClient({
-      projectId: this._projectId,
-      keyFile: process.env.GCP_TRANSLATION_KEY_FILE,
-    });
+    if (process.env.GCP_TRANSLATION_KEY_FILE) {
+      this._client = new TranslationServiceClient({
+        projectId: this._projectId,
+        keyFile: process.env.GCP_TRANSLATION_KEY_FILE,
+      });
+    }
+    else {
+      this._client = new TranslationServiceClient();
+    }
   }
 
   async translate(
@@ -26,7 +32,7 @@ export class GoogleTranslateService {
     }
 
     const results = await this._client.translateText({
-      parent: `projects/${this._projectId}`,
+      parent: this._projectId ? `projects/${this._projectId}` : null,
       contents,
       // sourceLanguageCode: srcLang,  // TODO: use the source lang config
       targetLanguageCode: configs.defaultTargetLang,
