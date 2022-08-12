@@ -949,10 +949,10 @@
   resolved "https://registry.npmjs.org/@tsconfig/node16/-/node16-1.0.3.tgz"
   integrity sha512-yOlFc+7UtL/89t2ZhjPvvB/DeAr3r+Dq58IgzsFkOAvVC6NMJXmCGjbptdXdR9qsX7pKcTL+s87FtYREi2dEEQ==
 
-"@twtts/shared@^1.0.4":
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/@twtts/shared/-/shared-1.0.4.tgz#becd510205f74e84feb772c64f0ec62127231fa4"
-  integrity sha512-O2xZDZRFsBct9tV4ehiCvsg1omTVTi+aVuiy5lFDi1CCiQ5jT9bZLI+X62aZhyC7Gg3pvMbxaHbKEQVEiRXVug==
+"@twtts/shared@^1.0.6":
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/@twtts/shared/-/shared-1.0.6.tgz#8b6ac009cedc1343054fb820980fd24f4dd64cff"
+  integrity sha512-YmBzb7mG/4CwDw2HbNPgemoyWk1uEhps3LcfNElVHTQ1849DAVUi03nFO2pv0KxQjacpH/cKDYGk7u8vGKN9bw==
   dependencies:
     axios "^0.27.2"
     typescript "^4.7.4"

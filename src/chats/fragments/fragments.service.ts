@@ -7,8 +7,8 @@ export class FragmentsService {
   private _tokenizer: ChatTokenizer;
 
   constructor(private emotesService: EmotesService) {
-    //const manager = emotesService.getEmoteManager();
-    this._tokenizer = new ChatTokenizer();
+    const manager = this.emotesService.getEmoteManager();
+    this._tokenizer = new ChatTokenizer(manager);
   }
 
   async tokenize(
