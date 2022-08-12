@@ -4,6 +4,7 @@ import { NameTranslateService } from '../../usernames/translate/translate.servic
 import { PronunciationsService } from '../../pronunciations/pronunciations.service';
 import {
   ChatToken,
+  getLanguage,
   TranslateChatResponse,
   UserConfigs,
 } from '@twtts/shared';
@@ -50,6 +51,12 @@ export class ChatTranslateService {
          * because the source language is detected as a part of translation.
          */
         token.language = translated[index].srcLang;
+        // Add pronunciations
+        token.pronunciation = {
+          text: token.text,
+          pinyin: this.pronunciationsService.getPinyin(token.text),
+          romaji: await this.pronunciationsService.getRomaji(token.text),
+        };
 
         translatedTokens.push({
           text: translated[index].text,
@@ -63,7 +70,7 @@ export class ChatTranslateService {
     const output: TranslateChatResponse = {
       original: originalTokens,
       translated: translatedTokens,
-      srcLang: 'auto',
+      srcLang: getLanguage(originalTokens),
       destLang: configs.defaultTargetLang,
       displayName: await this.nameTranslateService.translate(
         displayName,
