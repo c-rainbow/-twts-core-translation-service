@@ -32,7 +32,8 @@ export class GoogleTranslateService {
     }
 
     const results = await this._client.translateText({
-      parent: this._projectId ? `projects/${this._projectId}` : null,
+      parent: `projects/${this._projectId}`,
+      mimeType: 'text/plain',
       contents,
       // sourceLanguageCode: srcLang,  // TODO: use the source lang config
       targetLanguageCode: configs.defaultTargetLang,
