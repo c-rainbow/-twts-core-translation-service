@@ -7,7 +7,7 @@ export class NameLangDetectController {
   constructor(private readonly langdetectService: NameLangDetectService) {}
 
   @Post()
-  detectLanguage(@Body() detectLangDto: DetectNameLangDto) {
-    return this.langdetectService.detectLanguage(detectLangDto);
+  detectLanguage(@Body() dto: DetectNameLangDto) {
+    return this.langdetectService.detectLanguage(dto.displayName);
   }
 }
